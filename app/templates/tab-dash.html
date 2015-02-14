@@ -1,0 +1,103 @@
+<ion-view view-title="Masjid Finder">
+    <ion-content>
+
+
+        <script id="my-modal.html" type="text/ng-template">
+            <div class="modal">
+                <ion-modal-view>
+                    <div class="bar bar-header bar-positive">
+                        <button class="button icon ion-arrow-left-c button-clear" ng-click="closeModal()"></button>
+                        <h1 class="title">Prayer Timings</h1>
+                    </div>
+                    <center>
+                    <ion-content style="top: 100px;">
+                        <div class="card">
+                            <div class="item item-text-wrap">
+                                Sunrise is at {{sunrise}}
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="item item-text-wrap">
+                                fajar is at {{fajr}}
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="item item-text-wrap">
+                                Dhuhr is at {{dhuhr}}
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="item item-text-wrap">
+                                Asar is at {{asr}}
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="item item-text-wrap">
+                                Maghrib is at {{maghrib}}
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="item item-text-wrap">
+                                Isha is at {{isha}}
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="item item-text-wrap">
+                                sunset is at {{sunset}}
+                            </div>
+                        </div>
+                        </center>
+                    </ion-content style="margin-bottom: 100px;">
+                </ion-modal-view>
+            </div>
+        </script>
+
+
+        <div class="row z-depth-5" on-swipe-right="onSwipeRight()" on-swipe-left="onSwipeLeft()">
+            <div ng-repeat="card in cards" ng-show="$index===currentCard" class="col s12 m7">
+
+                <div class="card">
+                    <div class="card-image">
+                        <div class='needImg'>
+                            <a href="{{card.mobile_url}}"><img class="full-image" ng-src="{{card.image_url}}" style="width: 100%; height: auto;">
+                            </a>
+                            <!--  <img ng-src="{{card.mobile_url}}" altSrc="../images/masjid.jpg" onerror="this.src = $(this).attr('altSrc')"> -->
+                            <!-- <img ng-src="{{card.mobile_url}}" onerror='this.onerror = null; this.src="http://i.imgur.com/TdzE0yr.jpg"'> -->
+
+
+                            <span class="card-title"><strong>{{card.name}}</strong></span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                      <center>
+                        <h5>{{card.name}}</h5>
+                        <p>{{card.snippet_text}}</p>
+                        <p>Address: {{card.location.address[0]}}</p>
+                        <p>Phone Number: {{card.phone}}</p>
+                        </center>
+
+                        <a class="tab-item" href="{{card.mobile_url}}">
+                            <img src="{{card.rating_img_url}}">
+                        </a>
+                    </div>
+                    <div class="card-action">
+
+                        <button class="button button-balanced ion-chevron-left" ng-click="onSwipeRight()"> Last</button>
+                        <button style="float: right" class="button button-positive ion-chevron-right" ng-click="onSwipeLeft()"> Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="loader" class="card">
+            <center>
+                <div class="item item-text-wrap">
+
+                    Swipe Left or Right to see Next Masjid near you!
+                </div>
+            </center>
+        </div>
+        <button ng-click="openModal()" class="button button-full button-positive">
+            Touch here for Namaz Timings :)
+        </button>
+    </ion-content>
+</ion-view>
