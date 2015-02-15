@@ -1,7 +1,9 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $http, Yelp, $cordovaGeolocation, $ionicModal) {
+.controller('DashCtrl', function($scope, $http, Yelp, $cordovaGeolocation, $ionicModal, IslamicDate) {
 
+  // $scope.hijriDate = writeIslamicDate();
+$scope.higDate =IslamicDate.getDate();
 $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -15,6 +17,13 @@ $ionicModal.fromTemplateUrl('my-modal.html', {
     $scope.modal.hide();
   };
 
+    $scope.cardlevel = function(index) {
+
+        if ($scope.currentCard <= 0) {
+            return true;
+        }
+        return false;
+    }
 
     $scope.currentCard = 0;
     $scope.loader = false
